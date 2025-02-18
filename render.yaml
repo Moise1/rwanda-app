@@ -1,0 +1,25 @@
+services:
+  - name: express-backend
+    type: web
+    runtime: node
+    env: node
+    plan: free
+    buildCommand: |
+      cd server
+      npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: PORT
+        value: 10000 # Render auto-assigns a PORT, so use process.env.PORT in Express
+
+  - name: react-frontend
+    type: web
+    runtime: static
+    buildCommand: |
+      cd client
+      npm install
+      npm run build
+    staticPublishPath: client/build
+    envVars:
+      - key: REACT_APP_API_BASE
+        value: "https://express-backend.onrender.com" # Replace with your backend URL after deployment
