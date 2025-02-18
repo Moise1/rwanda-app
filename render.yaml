@@ -4,8 +4,10 @@ services:
     runtime: node
     env: node
     plan: free
-    buildCommand: cd client && npm install && npm run build && cd ../server && npm install
-    startCommand: cd server && npm start
+    buildCommand: |
+      cd client && npm install && npm run build && \
+      cd ../server && npm install
+    startCommand: cd server && node index.js
     envVars:
       - key: PORT
         value: 10000 # Render auto-assigns a PORT, so use process.env.PORT in Express
