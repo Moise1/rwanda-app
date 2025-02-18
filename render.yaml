@@ -19,7 +19,7 @@ services:
       cd client
       npm install
       npm run build
-    staticPublishPath: client/build
+    staticPublishPath: ./client/build
     envVars:
       - key: REACT_APP_API_BASE
-        value: "https://express-backend.onrender.com" # Replace with your backend URL after deployment
+        value: "https://express-backend-g24l.onrender.com"
