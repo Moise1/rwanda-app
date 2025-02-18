@@ -12,17 +12,6 @@ app.use(express.json());
 
 const port = process.env.PORT || 4000;
 
-// Serve static files from React build
-app.use(express.static(path.join(__dirname, '../client/build')));
-
-// Handle React routing, return all requests to React app
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
-  });
-
 
 app.get('/provinces', (req, res) => {
     return res.json(
@@ -88,3 +77,14 @@ app.get('/villages', (req, res) => {
 });
 
 
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+});
