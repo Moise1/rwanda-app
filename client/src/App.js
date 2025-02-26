@@ -153,16 +153,21 @@ function App(){
       <Row className='mb-5'>
         <Col className='mb-4'>
           <Select
+            showSearch
             style={{ width: 150 }}
             options={levelOptions}
             onChange={handleLevelChange}
             value={level}
             placeholder="Select division"
+            filterSort={(optionA, optionB) =>
+              (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+            }
           />
         </Col>
         {level && level !== 'province' && (
           <Col className='mb-4'>
             <Select
+              showSearch
               style={{ width: 150 }}
               placeholder="Select province"
               value={filters.province}
@@ -170,6 +175,9 @@ function App(){
                 value: p,
                 label: p
               }))}
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+              }
               onChange={value => handleFilterChange('province', value)}
             />
           </Col>
@@ -177,6 +185,7 @@ function App(){
         {level && ['sector', 'cell', 'village'].includes(level) && (
           <Col className='mb-4'>
             <Select
+              showSearch
               style={{ width: 150 }}
               placeholder="Select district"
               value={filters.district}
@@ -184,6 +193,9 @@ function App(){
                 value: d,
                 label: d
               }))}
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+              }
               onChange={value => handleFilterChange('district', value)}
               disabled={!filters.province}
             />
@@ -192,6 +204,8 @@ function App(){
         {level && ['cell', 'village'].includes(level) && (
           <Col className='mb-4'>
             <Select
+
+              showSearch
               style={{ width: 150 }}
               placeholder="Select sector"
               value={filters.sector}
@@ -199,6 +213,9 @@ function App(){
                 value: s,
                 label: s
               }))}
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+              }
               onChange={value => handleFilterChange('sector', value)}
               disabled={!filters.district}
             />
@@ -207,6 +224,8 @@ function App(){
         {level === 'village' && (
           <Col className='mb-4'>
             <Select
+            
+              showSearch
               style={{ width: 150 }}
               placeholder="Select cell"
               value={filters.cell}
@@ -214,6 +233,9 @@ function App(){
                 value: c,
                 label: c
               }))}
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+              }
               onChange={value => handleFilterChange('cell', value)}
               disabled={!filters.sector}
             />
