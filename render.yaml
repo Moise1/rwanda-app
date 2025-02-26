@@ -1,5 +1,5 @@
 services:
-  - name: express-backend
+  - name: rwanda-app-api
     type: web
     runtime: node
     env: node
@@ -10,9 +10,9 @@ services:
     startCommand: cd server && node index.js
     envVars:
       - key: PORT
-        value: 10000 # Render auto-assigns a PORT, so use process.env.PORT in Express
+        value: 10000
 
-  - name: react-frontend
+  - name: rwanda-app
     type: web
     runtime: static
     buildCommand: |
@@ -23,4 +23,4 @@ services:
 
     envVars:
       - key: REACT_APP_API_BASE
-        value: "https://express-backend-g24l.onrender.com"
+        value: "https://rwanda-app-api.onrender.com"
